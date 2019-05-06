@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF17F8F0228013F00051DB1F /* SomeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF17F8EF228013F00051DB1F /* SomeClass.swift */; };
 		AF60BA9F22681B4400AE592D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF60BA9E22681B4400AE592D /* AppDelegate.swift */; };
 		AF60BAA122681B4400AE592D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF60BAA022681B4400AE592D /* ViewController.swift */; };
 		AF60BAA422681B4400AE592D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF60BAA222681B4400AE592D /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF17F8EF228013F00051DB1F /* SomeClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeClass.swift; sourceTree = "<group>"; };
 		AF60BA9B22681B4400AE592D /* LeetCodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeetCodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF60BA9E22681B4400AE592D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF60BAA022681B4400AE592D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				AF60BAA522681B4600AE592D /* Assets.xcassets */,
 				AF60BAA722681B4600AE592D /* LaunchScreen.storyboard */,
 				AF60BAAA22681B4600AE592D /* Info.plist */,
+				AF17F8EF228013F00051DB1F /* SomeClass.swift */,
 			);
 			path = LeetCodeDemo;
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF17F8F0228013F00051DB1F /* SomeClass.swift in Sources */,
 				AF60BAA122681B4400AE592D /* ViewController.swift in Sources */,
 				AF60BA9F22681B4400AE592D /* AppDelegate.swift in Sources */,
 				AF60BAB122681B5B00AE592D /* Solution.swift in Sources */,

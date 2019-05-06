@@ -12,11 +12,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        testSolution()
     }
 
+    @IBAction func startClick(_ sender: Any) {
+        testSolution()
+    }
+    
     func testSolution(){
-        print(Solution.mySqrt(10))
+        //print(Solution.mySqrt(10))
+        let node = TreeNode.nodeFromArr(arr: [1,2,2,3,4,4,3])
+        
+        
     }
 
 }
