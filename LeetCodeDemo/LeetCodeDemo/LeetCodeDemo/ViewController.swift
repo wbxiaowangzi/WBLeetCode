@@ -20,8 +20,8 @@ class ViewController: UIViewController {
     
     func testSolution(){
         //print(Solution.mySqrt(10))
-        let node = TreeNode.nodeFromArr(arr: [1,2,2,3,4,4,3])
-        
+        //let node = TreeNode.nodeFromArr(arr: [1,2,2,3,4,4,3])
+        Solution.Instance.singleNumber([2,1,2,1,3])
         
     }
 

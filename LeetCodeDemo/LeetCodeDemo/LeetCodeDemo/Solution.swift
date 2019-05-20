@@ -76,4 +76,43 @@ class Solution {
         return depth
     }
     
+    
+    /// 给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+    ///
+    /// - Parameter s: 给定的字符串
+    /// - Returns: 是否是回文字符串
+    let NAndC:[Character] = ["1","2","3","4","5","6","7","8","9","0","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    func isPalindrome(_ s: String) -> Bool {
+        var arr = stringToArr(s.lowercased())
+        arr = arr.filter({NAndC.contains($0)})
+        var i = 0
+        let c = arr.count
+        while i < c/2 {
+            if arr[i] != arr[c - 1 - i]{
+                return false
+            }
+            i += 1
+        }
+        return true
+    }
+    
+    /// 给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+    ///
+    /// - Parameter nums: 数组
+    /// - Returns: 只出现一次的元素
+    func singleNumber(_ nums: [Int]) -> Int {
+        let newarr = nums.sorted()
+        var i = 0
+        while i + 1 < newarr.count {
+            let a = newarr[i]
+            let b = newarr[i + 1]
+            if a == b{
+                i += 2
+            }else{
+                return a
+            }
+        }
+        return newarr[i]
+    }
+    
 }
