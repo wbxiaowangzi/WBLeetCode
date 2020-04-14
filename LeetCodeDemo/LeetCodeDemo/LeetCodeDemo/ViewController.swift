@@ -23,10 +23,11 @@ class ViewController: UIViewController {
         //let node = TreeNode.nodeFromArr(arr: [1,2,2,3,4,4,3])
         //Solution.Instance.singleNumber([2,1,2,1,3])
         //Solution.Instance.sortedArrayToBST([1,2,3,4,5,6,7,8,9])
-        let n0 = Solution.Instance.node(from: [1])
-        let n1 = Solution.Instance.node(from: [9,9])
+        //let n0 = Solution.Instance.node(from: [1])
+        //let n1 = Solution.Instance.node(from: [9,9])
         //Solution.Instance.addTwoNumbers(n0, n1)?.printNode()
-        print(Solution.Instance.maxProfit([7,6,5,4,8]))
+        //print(Solution.Instance.maxProfit([7,6,5,4,8]))
+        Solution.Instance.myAtoi("0-1")
     }
 
 }

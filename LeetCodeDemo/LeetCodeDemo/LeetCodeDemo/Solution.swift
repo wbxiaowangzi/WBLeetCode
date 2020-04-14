@@ -211,4 +211,40 @@ class Solution {
         }
         return maxP
     }
+    
+    
+    func myAtoi(_ str: String) -> Int {
+        let dic = ["0":0,"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9]
+        var result = 0
+        var hadBegin = false
+        var sign = 1
+        for c in str{
+            if c == " ",!hadBegin{
+                continue
+            }
+            if (c == "-" || c == "+") && !hadBegin {
+                if c == "-"{
+                    sign = -1
+                }
+                hadBegin = true
+            }else {
+                if let i = dic[String.init(c)]{
+                    let v = result*10 + i
+                    if sign == -1, v > 2147483648{
+                        result = 2147483648
+                        break
+                    }else if sign == 1,v > 2147483647{
+                        result = 2147483647
+                        break
+                    }
+                    result = v
+                    hadBegin = true
+                }else{
+                    break
+                }
+            }
+        }
+        result *= sign
+        return result
+    }
 }
