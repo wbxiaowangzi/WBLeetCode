@@ -1,16 +1,4 @@
-//
-//  SomeClass.swift
-//  LeetCodeDemo
-//
-//  Created by WangBo on 2019/5/6.
-//  Copyright © 2019 YingZi. All rights reserved.
-//
-
 import Foundation
-
-/**
- * Definition for a binary tree node.
- */
 
 public class TreeNode {
     public var val: Int
@@ -73,15 +61,5 @@ public class ListNode {
             j += 1
         }
         return node
-    }
-    
-    func printNode(){
-        var arr = [Int]()
-        var node:ListNode? = self
-        while node != nil {
-            arr.append(node!.val)
-            node = node!.next
-        }
-        print(arr)
     }
 }

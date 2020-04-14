@@ -785,7 +785,7 @@ func isSameTree(_ p: TreeNode?, _ q: TreeNode?) -> Bool {
 
 func lengthOfLastWord(_ s: String) -> Int {
     let arr = s.components(separatedBy: " ").filter({$0 != ""})
-    return arr.last?.characters.count ?? 0
+    return arr.last?.count ?? 0
 }
 
 lengthOfLastWord("b a  ")
@@ -810,8 +810,8 @@ func plusOne(_ digits: [Int]) -> [Int] {
 func addBinary(_ a: String, _ b: String) -> String {
     
     let dic:[Character:Int] = ["1":1,"0":0]
-    let a1 = a.characters.flatMap({dic[$0]})
-    let a2 = b.characters.flatMap({dic[$0]})
+    let a1 = a.compactMap({dic[$0]})
+    let a2 = b.compactMap({dic[$0]})
     var i = a1.count - 1, j = a2.count - 1
     var carr = 0
     var arr = [Int]()
@@ -843,5 +843,6 @@ func addBinary(_ a: String, _ b: String) -> String {
     }
     return str
 }
+
 
 

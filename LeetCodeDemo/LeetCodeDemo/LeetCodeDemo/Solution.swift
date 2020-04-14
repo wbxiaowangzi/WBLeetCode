@@ -115,4 +115,100 @@ class Solution {
         return newarr[i]
     }
     
+    
+    /// 将有序数组转换为一个高度平衡的二叉搜索树
+    ///
+    /// - Parameter nums: 有序数组
+    /// - Returns: 二叉搜索树
+    func sortedArrayToBST(_ nums: [Int]) -> TreeNode? {
+        if nums.count > 0{
+            let tn = TreeNode(nums[nums.count/2])
+            tn.left = sortedArrayToBST(Array(nums.prefix(upTo: nums.count/2)))
+            tn.right = sortedArrayToBST(Array(nums.suffix(from: nums.count/2+1)))
+            return tn
+        }else{
+            return nil
+        }
+    }
+    
+    
+    /// 翻转字符串里的单词
+    ///
+    /// - Parameter s: 字符串
+    /// - Returns: 翻转后的字符串
+    func reverseWords(_ s: String) -> String {
+        let arr = s.components(separatedBy: " ").filter({$0 != " " && $0.count > 0}).reversed()
+        return arr.joined(separator: " ")
+    }
+    
+    /*
+     给你两个 非空 链表来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储一位数字。将这两数相加会返回一个新的链表。
+     你可以假设除了数字 0 之外，这两个数字都不会以零开头。
+     */
+    func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        var arr0 = [Int]()
+        var arr1 = [Int]()
+        var n0 = l1
+        var n1 = l2
+        while n0 != nil || n1 != nil{
+            if n0 != nil{
+                arr0.append(n0!.val)
+                n0 = n0?.next
+            }else{
+                arr0.insert(0, at: 0)
+            }
+            if n1 != nil{
+                arr1.append(n1!.val)
+                n1 = n1?.next
+            }else{
+                arr1.insert(0, at: 0)
+            }
+        }
+        
+        var res = [Int]()
+        var i = arr0.count-1
+        var carry = 0
+        while i>=0 {
+            let sum = arr1[i]+arr0[i]+carry
+            res.insert(sum%10, at: 0)
+            carry = sum/10
+            i -= 1
+        }
+        if carry > 0 {
+            res.insert(carry, at: 0)
+        }
+        //思路1：给长度不足的node添加value为0的node 然后直接给两个node按位相加对十取余
+        //思路2：给所有的value提取成两个数组，然后让两个数组按约定相加，最后用结果创建新的node
+        return node(from: res)
+    }
+    
+    func node(from arr:[Int])->ListNode?{
+        var result:ListNode?
+        var currentNode:ListNode?
+        for i in arr{
+            let node = ListNode(i)
+            if result == nil{
+                result = node
+                currentNode = node
+            }else{
+                currentNode!.next = node
+                currentNode = node
+            }
+        }
+        return result
+    }
+    
+    func maxProfit(_ prices: [Int]) -> Int {
+        if prices.count <= 1 {
+            return 0
+        }
+        var minP = prices[0]
+        var maxP = 0
+        
+        for i in 1..<prices.count{
+            maxP = max(maxP, prices[i]-minP)
+            minP = min(prices[i], minP)
+        }
+        return maxP
+    }
 }
