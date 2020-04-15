@@ -27,7 +27,8 @@ class ViewController: UIViewController {
         //let n1 = Solution.Instance.node(from: [9,9])
         //Solution.Instance.addTwoNumbers(n0, n1)?.printNode()
         //print(Solution.Instance.maxProfit([7,6,5,4,8]))
-        Solution.Instance.myAtoi("0-1")
+        //Solution.Instance.myAtoi("0-1")
+        Solution.Instance.updateMatrix3([[0,0,0],[0,1,0],[0,0,0]])
     }
 
 }

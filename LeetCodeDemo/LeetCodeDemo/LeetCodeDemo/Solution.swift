@@ -247,4 +247,123 @@ class Solution {
         result *= sign
         return result
     }
+    
+    func updateMatrix(_ matrix: [[Int]]) -> [[Int]] {
+        //1，记录列数为n 2,把二维数组展开成一维数组 3，跟任意位置i距离s坐标为 i-s,i+s,i-s*n,i+s*n 4，记录每个位置上距离最近的0的距离，
+        let rowNumber = matrix.first?.count ?? 1
+        let arr = matrix.flatMap({$0})
+        var result = [[Int]]()
+        var subArr = [Int]()
+        var isLeft = false
+        var isRight = false
+        for (i,number) in arr.enumerated(){
+            
+            if i%rowNumber == 0{
+                isLeft = true
+                isRight = false
+            }else if (i+1)%rowNumber == 0{
+                isLeft = false
+                isRight = true
+            }else if(rowNumber == 1) {
+                isLeft = true
+                isRight = true
+            }else{
+                isLeft = false
+                isRight = false
+            }
+            
+            if number == 0{
+                subArr.append(0)
+            }else{
+                for j in 1..<arr.count{
+                    if (!isLeft && j < rowNumber && i>=j && i-j < arr.count && arr[i-j] == 0) ||
+                        (!isRight && j < rowNumber && i+j < arr.count && (arr[i+j]) == 0) ||
+                        ((i + j*rowNumber < arr.count) && (arr[i + j*rowNumber]) == 0) ||
+                        ((i >= j*rowNumber && i - j*rowNumber < arr.count) && (arr[i - j*rowNumber]) == 0){
+                        subArr.append(j)
+                        break
+                    }
+                }
+            }
+            if subArr.count == rowNumber{
+                result.append(subArr)
+                subArr = [Int]()
+            }
+        }
+        return result
+        
+    }
+    
+    func updateMatrix2(_ matrix: [[Int]]) -> [[Int]] {
+        //所有为0的元素坐标算出来，遍历元素，找到里当前元素坐标x,y差值和最小的就是距离，
+        var indexArr = [[Int]]()
+        var result = [[Int]]()
+        for i in 0..<matrix.count{
+            let subArr = matrix[i]
+            for j in 0..<subArr.count{
+                if subArr[j] == 0{
+                    var temp = [Int]()
+                    temp.append(i)
+                    temp.append(j)
+                    indexArr.append(temp)
+                }
+            }
+        }
+        for i in 0..<matrix.count{
+            let subArr = matrix[i]
+            var temp = [Int]()
+            for j in 0..<subArr.count{
+                if subArr[j] == 0{
+                    temp.append(0)
+                }else{
+                    let m = findClosestZeroSpace(from: indexArr, x: i, y: j)
+                    temp.append(m)
+                }
+            }
+            result.append(temp)
+        }
+        return result
+    }
+    
+    func findClosestZeroSpace(from indexArr:[[Int]],x:Int,y:Int)->Int{
+        var m = Int.max
+        for index in indexArr{
+            m = min(abs(index[0]-x)+abs(index[1]-y), m)
+        }
+        return m
+    }
+    
+    func updateMatrix3(_ matrix: [[Int]]) -> [[Int]] {
+        let row = matrix.count
+        let col = matrix.first!.count
+        var result = matrix
+        for i in 0..<row{
+            for j in 0..<col{
+                if result[i][j] == 1{
+                    result[i][j] = row + col
+                }
+                if (i > 0) {
+                    result[i][j] = min(result[i][j], result[i - 1][j] + 1);
+                }
+                if (j > 0) {
+                    result[i][j] = min(result[i][j], result[i][j - 1] + 1);
+                }
+            }
+        }
+        for i in 1...row{
+            let m = row-i
+            for j in 1...col{
+                let n = col-j
+                if (m < row - 1) {
+                    result[m][n] = min(result[m][n], result[m + 1][n] + 1);
+                }
+                if (n < col - 1) {
+                    result[m][n] = min(result[m][n], result[m][n + 1] + 1);
+                }
+            }
+        }
+        return result
+    }
+    
+    
 }
