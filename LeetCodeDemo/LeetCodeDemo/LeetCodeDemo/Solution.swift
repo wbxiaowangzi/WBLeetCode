@@ -366,4 +366,64 @@ class Solution {
     }
     
     
+    ///找出最大最小值，i从最小往最大遍历，如果i同时属于多个集合，那么合并集合
+    func merge(_ intervals: [[Int]]) -> [[Int]] {
+        var result = [[Int]]()
+
+        guard let dic = hasCommon(with: intervals) else{
+            return intervals
+        }
+
+        for (_,vs) in dic{
+            var minValue = intervals[vs[0]][0]
+            var maxValue = intervals[vs[0]][0]
+            for v in vs{
+                minValue = min(minValue, intervals[v][0])
+                maxValue = max(maxValue, intervals[v][1])
+            }
+            if !result.contains([minValue,maxValue]){
+                result.append([minValue,maxValue])
+            }
+        }
+        if hasCommon(with: result) != nil{
+            result = merge(result)
+        }
+
+        //print(result)
+        return result
+    }
+    
+    func hasCommon(with intervals:[[Int]])->[Int:[Int]]?{
+        var dic = [Int:[Int]]()
+        for i in 0..<intervals.count{
+            dic[i] = [Int]()
+            for j in 0..<intervals.count{
+                let begin = intervals[j][0]
+                let end = intervals[j][1]
+                if begin <= intervals[i][0] && end >= intervals[i][0] || begin <= intervals[i][1] && end >= intervals[i][1]{
+                    dic[i]!.append(j)
+                }
+            }
+        }
+        
+        for vs in dic.values{
+            if vs.count >= 2{
+                return dic
+            }
+        }
+        return nil
+    }
+    //有交集取并集
+    func merge2(_ intervals: [[Int]]) -> [[Int]] {
+        var merged = [[Int]]()
+        let result = intervals.sorted(by: {$0[0]<$1[0]})
+        for r in result{
+            if merged.count == 0 || r[0] > merged.last![1]{
+                merged.append(r)
+            }else{
+                merged[merged.count-1][1] = max(merged.last![1], r[1])
+            }
+        }
+        return merged
+    }
 }
