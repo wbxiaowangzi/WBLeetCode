@@ -59,7 +59,7 @@ class Solution {
             return false
         }
         if p?.val == q?.val{
-          return isMirror(p: p?.left, q: q?.right) && isMirror(p: p?.right, q: q?.left)
+            return isMirror(p: p?.left, q: q?.right) && isMirror(p: p?.right, q: q?.left)
         }
         return false
     }
@@ -294,6 +294,7 @@ class Solution {
         
     }
     
+    //根据矩阵中元素距离最近0的距离生成一个新矩阵
     func updateMatrix2(_ matrix: [[Int]]) -> [[Int]] {
         //所有为0的元素坐标算出来，遍历元素，找到里当前元素坐标x,y差值和最小的就是距离，
         var indexArr = [[Int]]()
@@ -365,15 +366,15 @@ class Solution {
         return result
     }
     
-    
-    ///找出最大最小值，i从最小往最大遍历，如果i同时属于多个集合，那么合并集合
+    ///给出一个区间的集合，请合并所有重叠的区间。
+    ///找出最大最小值，i从最小往最大遍历，如果i同时属于多个集合，那么合并集合------超时
     func merge(_ intervals: [[Int]]) -> [[Int]] {
         var result = [[Int]]()
-
+        
         guard let dic = hasCommon(with: intervals) else{
             return intervals
         }
-
+        
         for (_,vs) in dic{
             var minValue = intervals[vs[0]][0]
             var maxValue = intervals[vs[0]][0]
@@ -388,7 +389,7 @@ class Solution {
         if hasCommon(with: result) != nil{
             result = merge(result)
         }
-
+        
         //print(result)
         return result
     }
@@ -413,7 +414,7 @@ class Solution {
         }
         return nil
     }
-    //有交集取并集
+    /////给出一个区间的集合，请合并所有重叠的区间。----比较完美
     func merge2(_ intervals: [[Int]]) -> [[Int]] {
         var merged = [[Int]]()
         let result = intervals.sorted(by: {$0[0]<$1[0]})
@@ -426,4 +427,25 @@ class Solution {
         }
         return merged
     }
+    /*
+     55. 跳跃游戏
+     给定一个非负整数数组，你最初位于数组的第一个位置。
+     数组中的每个元素代表你在该位置可以跳跃的最大长度。
+     判断你是否能够到达最后一个位置。
+     */
+    func canJump(_ nums: [Int]) -> Bool {
+        let n = nums.count
+        var rightmost = 0
+        for i in 0..<n{
+            if i <= rightmost{
+                rightmost = max(rightmost, i+nums[i])
+                if rightmost >= n-1{
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    
 }
