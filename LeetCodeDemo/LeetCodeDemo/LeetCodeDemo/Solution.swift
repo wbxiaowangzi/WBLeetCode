@@ -447,5 +447,29 @@ class Solution {
         return false
     }
     
+    // 11. 盛最多水的容器BFS
+    func maxArea(_ height: [Int]) -> Int {
+        var result = 0
+        for i in 0..<height.count{
+            for j in i+1..<height.count{
+                result = max((j-i)*min(height[i], height[j]), result)
+            }
+        }
+        return result
+    }
+    //DP
+    func maxArea1(_ height: [Int]) -> Int {
+    var i = 0,j = height.count - 1
+    var area = 0
+    while i<j {
+        area = max(area, (j-i)*min(height[i], height[j]))
+        if height[i]<height[j]{
+            i += 1
+        }else{
+            j -= 1
+        }
+    }
+    return area
+    }
     
 }
