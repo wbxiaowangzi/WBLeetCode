@@ -30,7 +30,12 @@ class ViewController: UIViewController {
         //Solution.Instance.myAtoi("0-1")
         //Solution.Instance.updateMatrix3([[0,0,0],[0,1,0],[0,0,0]])
         //Solution.Instance.merge2([[1,3],[2,6],[8,10],[15,18]])
-        Solution.Instance.maxArea([1,1])
+        //Solution.Instance.maxArea([1,1])
+        
+        Solution.Instance.getMaxRepetitions("phqghumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjpre",
+            1000000,
+            "pggxr",
+            100)
     }
 
 }

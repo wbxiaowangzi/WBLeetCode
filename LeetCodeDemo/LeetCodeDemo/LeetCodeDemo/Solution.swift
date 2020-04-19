@@ -472,4 +472,78 @@ class Solution {
     return area
     }
     
+    ///466. 统计重复个数
+    func getMaxRepetitions(_ s1: String, _ n1: Int, _ s2: String, _ n2: Int) -> Int {
+        if n1 == 0{
+            return 0
+        }
+        var Rs11 = ""
+        for _ in 0..<n1{
+            Rs11 += s1
+        }
+        let Rs1 = stringToArr(Rs11)
+        var Rs22 = ""
+        for _ in 0..<n2{
+            Rs22 += s2
+        }
+        let Rs2 = stringToArr(Rs22)
+        
+        var count = 0
+        let Len_Rs2 = Rs2.count
+        var j = 0
+        var i = 0
+        while i < Len_Rs2{
+            while j < Rs1.count {
+                if Rs1[j] == Rs2[i]{
+                    if i == Len_Rs2-1{
+                        count += 1
+                        i = 0
+                    }else{
+                        i += 1
+                    }
+                    j += 1
+                    break
+                }
+                j += 1
+            }
+            if j == Rs1.count{
+                break
+            }
+        }
+        return count
+    }
+    
+    func getMaxRepetitions2(_ s1: String, _ n1: Int, _ s2: String, _ n2: Int) -> Int {
+        var cnt = 0
+        var s1i = 0
+        var s2i = 0
+        let l1 = s1.count
+        let l2 = s2.count
+        var sign = -1
+        let ns1 = stringToArr(s1)
+        let ns2 = stringToArr(s2)
+        var n = 0
+        for var i in 0..<n1{
+            s1i = 0
+            while s1i < l1 {
+                if ns1[s1i] == ns2[s2i]{
+                    if (s2i == 0) && (sign == -1){
+                        sign = s1i
+                    }else if (s2i == 0) && (s1i == sign){
+                        n = (n1-1)/i
+                        cnt *= n
+                        i *= n
+                        sign = -1
+                    }
+                    s2i += 1
+                }
+                if s2i == l2{
+                    cnt += 1
+                    s2i = 0
+                }
+                s1i += 1
+            }
+        }
+       return cnt/n2
+    }
 }
