@@ -472,4 +472,19 @@ class Solution {
     return area
     }
     
+    ///200,岛屿的数量
+    func numIslands(_ grid: [[Character]]) -> Int {
+        var sideLength = 1
+        var result = 0
+        for (i,cs) in grid.enumerated(){
+            for (j,c) in cs.enumerated(){
+                if c == "1"{
+                    
+                }
+            }
+        }
+        
+        fatalError()
+     }
+    
 }
